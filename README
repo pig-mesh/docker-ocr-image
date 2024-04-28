@@ -1,0 +1,10 @@
+## 项目描述
+
+CnOCR 直接内置模型，无需下载，直接使用。方便 AI模块直接发起调用。
+
+
+
+
+```
+docker run -d -p 8501:8501 --name ocr registry.cn-hangzhou.aliyuncs.com/pigx/ocr:latest
+```
