@@ -1,0 +1,23 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: PIG 镜像 action
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to Docker Registry
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
+
+      - name: Build and push Docker images
+        run: |
+          docker build . -t ocr:latest
+          docker tag ocr:latest registry.cn-hangzhou.aliyuncs.com/pigx/ocr:latest
+          docker push registry.cn-hangzhou.aliyuncs.com/pigx/ocr:latest
