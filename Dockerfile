@@ -3,7 +3,7 @@ FROM --platform=linux/amd64 python:3.9
 ENV TZ=Asia/Shanghai
 ARG DEBIAN_FRONTEND=noninteractive
 
-COPY model/ ~/.cnocr/2.3/
+COPY model/*.zip /root/.cnocr/2.3/
 
 RUN apt-get update && apt-get install -y python3-opencv libglib2.0-0 libsm6 libxext6 libxrender-dev && rm -rf /var/lib/apt/lists/*
 
